@@ -89,3 +89,28 @@ match x {
   Some("fuge") => println!("fuge"), // match!
 }
 ```
+
+
+### trait
+```rust
+trait Foo {
+    fn method(&self);
+}
+```
+
+
+rustのトレイトは型クラスのように扱える。
+実装を書くことでFooとして型制約を書ける。
+(selfを引数を取るとmethodのように書けるのがpythonっぽい)
+```rust
+impl Foo for String {
+    fn method(&self){println("{}", *self)}
+}
+
+fn foo<T:Foo>(t:T){
+    t.method();
+}
+
+foo("foo")//OK!
+foo(3) //NG
+```
