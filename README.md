@@ -91,6 +91,13 @@ match x {
 ```
 
 
+#クロージャ
+```rust
+let sum = (0..101).fold(0, |sum,n| sum + n);
+println!("{}",sum);
+```
+
+
 ### trait
 ```rust
 trait Foo {
