@@ -91,9 +91,9 @@ match x {
 ```
 
 
-#クロージャ
+###クロージャ
 ```rust
-let sum = (0..101).fold(0, |sum,n| sum + n);
+let sum = (0..101).fold(0, |sum, n| sum + n);
 println!("{}",sum);
 ```
 
