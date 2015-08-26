@@ -104,13 +104,13 @@ rustのトレイトは型クラスのように扱える。
 (selfを引数を取るとmethodのように書けるのがpythonっぽい)
 ```rust
 impl Foo for String {
-    fn method(&self){println("{}", *self)}
+    fn method(&self){println!("{}", *self)}
 }
 
 fn foo<T:Foo>(t:T){
     t.method();
 }
 
-foo("foo")//OK!
-foo(3) //NG
+foo("foo".to_string)//OK!
+foo(3) // error: the trait `Foo` is not implemented for the type `_`
 ```
