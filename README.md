@@ -140,7 +140,8 @@ fn main(){
 }
 ```
 
-＃## 所有権の移動
+
+### 所有権の移動
 ```rust
 fn boxed_int(i:Box<i32>){
   println!("{}", i);
