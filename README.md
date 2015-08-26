@@ -91,10 +91,10 @@ match x {
 ```
 
 
-###クロージャ
+### クロージャ
 ```rust
 let sum = (0..101).fold(0, |sum, n| sum + n);
-println!("{}",sum);
+println!("{}", sum);
 ```
 
 
@@ -121,3 +121,50 @@ fn foo<T:Foo>(t:T){
 foo("foo".to_string)//OK!
 foo(3) // error: the trait `Foo` is not implemented for the type `_`
 ```
+
+
+
+
+## Rustのポインタ
+Rustのポインタにはlifetimeと所有権という概念があり、ヒープの解放などの処理はコンパイラが面倒を見てくれる。
+```rust
+fn fuge()->&i32{// missing lifetime specifier
+  let x = 3;//スタックに変数を積む。
+  &x;
+}
+
+fn main(){
+  {
+    let hoge = Box::new("hoge"); // 文字列をヒープに割り当てる。
+  }//スコープの外に出るとコンパイラが解放する。
+}
+```
+
+＃## 所有権の移動
+```rust
+fn boxed_int(i:Box<i32>){
+  println!("{}", i);
+}
+
+fn main(){
+  let x = Box::new(3);
+  boxed_int(x);
+  println!("{}", x) //use of moved value: `x`
+}
+```
+boxed_int関数に所有権が移ってしまったので、使用できない。
+
+
+### 所有権の借用
+```rust
+fn borrow_int(i:&i32){
+  println!("{}",i);
+}
+
+fn main(){
+  let x = Box::new(3);
+  borrow_int(&x);
+  println!("{}", x);
+}
+```
+貨しているだけなので使用できる。
