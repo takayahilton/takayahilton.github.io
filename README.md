@@ -16,6 +16,21 @@ Mozillaが開発中のシステム言語
 
 
 
+
+##install方法
+[公式](https://www.rust-lang.org/install.html)のホームページいってinstallerとバイナリをダスンロード出来ますが、
+```sh
+$ curl -sSf https://static.rust-lang.org/rustup.sh | sh
+```
+でinstallが一番簡単
+cargoというパッケージビルドツールとrustコンパイラがインストール出来ます。
+```sh
+$ rustc main.rs
+```
+でコンパイルできる。
+
+
+
 ## hello world
 ```rust
 fn main(){
