@@ -137,6 +137,30 @@ foo(3) // error: the trait `Foo` is not implemented for the type `_`
 ```
 
 
+特殊なtraitを実装する事で演算子のオーバーロードが使える
+```rust
+#[derive(Debug)]
+struct Point {
+    x: i32,
+    y: i32
+}
+
+impl Add for Point {
+    type Output = Point;
+
+    fn add(self, other: Point) -> Point {
+        Point {x: self.x + other.x, y: self.y + other.y}
+    }
+}
+
+fn main() {
+    let point = Point {x: 1, y: 0} + Point {x: 2, y: 3};
+    
+    println!("{:?}", point);
+}
+```
+
+
 
 
 ## Rustのポインタ
@@ -194,6 +218,7 @@ fn main(){
 #まとめ
 * RustはGCを使わずにメモリ安全にプログラミングが出来る。
 * Rustは抽象的にプログラミング出来るっぽい
+* 古いサンプルコードだとコンパイル通らなかったりする。　
 * Rustのメモリ安全性の概念「寿命」や「所有権」概念は難しい
 
 理解できるまで時間がかかりそう
