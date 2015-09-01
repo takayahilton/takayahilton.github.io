@@ -148,12 +148,12 @@ Rustでは参照を関数に渡したり変数に代入すると所有権の移�
 ```rust
 fn boxed_int(i:Box<i32>){
   println!("{}", i);
-}
+}//ここでiは解放される
 
 fn main(){
   let x = Box::new(3);
   boxed_int(x);
-  println!("{}", x) //use of moved value: `x`
+  println!("{}", x) // use of moved value: `x`
 }
 ```
 boxed_int関数に所有権が移ってしまったので、使用できない。
@@ -161,11 +161,11 @@ boxed_int関数に所有権が移ってしまったので、使用できない�
 
 
 ### 所有権の借用
-変数:&[型名]で宣言すると借用が使える
+&変数 で借用が使える
 ```rust
 fn borrow_int(i:&i32){
   println!("{}",i);
-}
+}//iは解放されない
 
 fn main(){
   let x = Box::new(3);
@@ -173,4 +173,4 @@ fn main(){
   println!("{}", x);
 }
 ```
-貨しているだけなので使用できる。
+貨しているだけなので　borrow_intが終了した後でも使用できる。
