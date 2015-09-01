@@ -155,9 +155,9 @@ impl Add for Point {
 
 fn main() {
     let point = Point {x: 1, y: 0} + Point {x: 2, y: 3};
-    
     println!("{:?}", point);
 }
+
 ```
 
 
