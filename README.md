@@ -15,8 +15,6 @@ Mozillaが開発中のシステム言語
 色々尖ってる
 
 
-
-
 ##install方法
 [公式](https://www.rust-lang.org/install.html)のホームページいってinstallerとバイナリをダスンロード出来ますが、
 ```sh
