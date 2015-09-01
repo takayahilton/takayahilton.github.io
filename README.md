@@ -213,6 +213,38 @@ fn main(){
 貨しているだけなので　borrow_intが終了した後でも使用できる。
 
 
+### 所有権があると何が嬉しいのか
+* c++なんかだと突然死する可能性のあるコードをコンパイルエラーに出来る
+```rust
+fn main() {
+    let mut x = Vec::new();
+    x.push("hello");
+    let y = &mut x[0]; //先頭の要素への参照
+    x.push("world"); //　pushする事でyが無効なメモリを参照してしまう可能性がある。
+    println!("{:?}",y);
+}
+```
+
+
+コンパイルすると
+```sh
+error: cannot borrow `x` as mutable more than once at a time
+```
+ちゃんとコンパイルエラーになる
+
+
+値をコピーするとコンパイルが通る
+```rust
+fn main() {
+    let mut x = Vec::new();
+    x.push("hello");
+    let y = &mut x[0].clone();//クローンしている。
+    x.push("world");
+    println!("{:?}",y);
+}
+```
+
+
 
 
 #まとめ
