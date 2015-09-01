@@ -72,6 +72,7 @@ enum Animal{
   Dog,
 }
 
+//代数的データ型
 enum Option<T> {
     Some(T),
     None,
@@ -128,6 +129,7 @@ foo(3) // error: the trait `Foo` is not implemented for the type `_`
 ## Rustのポインタ
 Rustのポインタにはlifetimeと所有権という概念があり、ヒープの解放などの処理はコンパイラが面倒を見てくれる。
 ```rust
+//スタックへのポインタは返せない
 fn fuge()->&i32{// missing lifetime specifier
   let x = 3;//スタックに変数を積む。
   &x;
@@ -136,12 +138,13 @@ fn fuge()->&i32{// missing lifetime specifier
 fn main(){
   {
     let hoge = Box::new("hoge"); // 文字列をヒープに割り当てる。
-  }//スコープの外に出るとコンパイラが解放する。
+  }//スコープの外に出ると解放する。
 }
 ```
 
 
 ### 所有権の移動
+Rustでは参照を関数に渡したり変数に代入すると所有権の移動が起こる。
 ```rust
 fn boxed_int(i:Box<i32>){
   println!("{}", i);
@@ -154,9 +157,11 @@ fn main(){
 }
 ```
 boxed_int関数に所有権が移ってしまったので、使用できない。
+* 所有権の移動を行わず参照を渡したい場合は、所有権の借用を使う。
 
 
 ### 所有権の借用
+変数:&[型名]で宣言すると借用が使える
 ```rust
 fn borrow_int(i:&i32){
   println!("{}",i);
